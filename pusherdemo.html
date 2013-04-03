@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-language" content="en-english">
+<title>Demo</title>
+<script src="http://js.pusher.com/1.12/pusher.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+// Setup Pusher to recive deposits
+	var pusher = new Pusher('xxx');
+	var channel = pusher.subscribe('simon');
+	channel.bind('event', function(data) {
+		    console.log(data);
+			document.getElementById('message').innerHTML = "New Message : "+ data.message;
+			document.getElementById('name').innerHTML = "From : "+ data.uname;	
+	});
+	channel.bind('reload', function(data) {
+		    console.log(data);
+			location.reload();
+	});		
+</script>
+</head>
+<body>
+<h1>Pusher Message Demo</h1>
+<h3><div id="message"></div></h3>
+<i><div id="name"></div></i>
+</body> 
+</html>
